@@ -1,0 +1,5 @@
+C:\ICESat2_2020_V2\3_27N59.5N_60E180E\data
+C:\Users\Administrator\Desktop\referencedata_downloading\toWTP\20221109
+116.830436	117.121753
+36.958690	37.227785
+4	0.01
