@@ -1,25 +1,25 @@
-% 1. �ο�ICESat2_2020_V2�ļ�����ĸ�ʽ���½�һ��ICESat2_2021_V3�ļ���
+% 1. 参考ICESat2_2020_V2文件夹里的格式，新建一个ICESat2_2021_V3文件夹,作为输出目录
 
-% 2. ��.m���Ƶ�֮ǰ��ȡǿ������ÿ�������txt���ļ��������У�������ͬһ��Ŀ¼�������µ�һ��txt�ļ����ļ���ǰ׺ΪV3_
-
-
-% �����������ֶ���������ķ�Χ����Ҳ����ֱ�ӸĴ��룬�磺min_LON = input('�����뾭����Сֵ��\n')ֱ�Ӹĳ� min_LON = 59.999999 
-% (!ע�⣺��С������60��ʱ�����õ�ֵ��59.999999����������ֵ�����60.000001����֮��Ҫ������)
-% (!ע�⣺��������γ�Ǹ��ģ�����
-% (!ע�⣺�������н���ǰ����Ҫ��figure���ڽ����κβ���
-% (!ע�⣺�����ͼ������������һֱ�жϣ����԰�scatterm(latitude, longitude, 1,h_te_interp)ע�͵�
+% 2. 将.m复制到之前提取强激光后的每个区域的txt子文件夹下运行，就能在同一个目录下生成新的一批txt文件，文件名前缀为V3_
 
 
-% 3. ������ɵ�V3_xxxxxxxx.txt��ʽ�Ƿ���ȷ���ο�ICESat2_2020_V2���txt��ʽ��
-% 4. �ο�ICESat2_2020_V2�������ɵ�txt��range.jpg������ICESat2_2021_V3��
+% 程序设置了手动输入区域的范围，也可以直接改代码，如：min_LON = input('请输入经度最小值：\n')直接改成 min_LON = 59.999999 
+% (!注意：最小经度是60度时，设置的值是59.999999，如果是最大值就设成60.000001，总之不要用整数)
+% (!注意：西经，南纬是负的，别反了
+% (!注意：程序运行结束前，不要对figure窗口进行任何操作
+% (!注意：如果绘图崩溃导致运行一直中断，可以把scatterm(latitude, longitude, 1,h_te_interp)注释掉
+
+
+% 3. 检查生成的V3_xxxxxxxx.txt格式是否正确（参考ICESat2_2020_V2里的txt格式）
+% 4. 参考ICESat2_2020_V2，将生成的txt和range.jpg整理在ICESat2_2021_V3里
 
 
 FileList = dir('*.txt');
 N = size(FileList,1);
-min_LON = input('�����뾭����Сֵ��\n');
-max_LON = input('�����뾭�����ֵ��\n');
-min_LAT = input('������γ����Сֵ��\n');
-max_LAT = input('������γ�����ֵ��\n');
+min_LON = input('请输入经度最小值：\n');
+max_LON = input('请输入经度最大值：\n');
+min_LAT = input('请输入纬度最小值：\n');
+max_LAT = input('请输入纬度最大值：\n');
 
 % Create the graphics figure.
 f = figure('Renderer', 'zbuffer', ...
@@ -64,6 +64,6 @@ for k = 1:N
 end
 
 % 
-disp('���ڻ�ͼ�У���������κβ���...');
+disp('正在绘图中，请勿进行任何操作...');
 saveas(f,'range.jpg');
-disp('��ͼ�ɹ������Զ�figure���ڽ��в���');
+disp('绘图成功！可以对figure窗口进行操作');
